@@ -1,5 +1,6 @@
 ---
---- Created by liuxiaodong.
+--- Created by liuxiaodong
+--- Modified by lgazo (v1), nhp0712 (v2)
 --- DateTime: 2019/4/3 19:10
 ---
 local mirror = require "kong.plugins.kong-plugin-http-mirror.mirror"

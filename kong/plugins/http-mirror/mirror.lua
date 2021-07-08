@@ -1,5 +1,6 @@
 ---
---- Created by liuxiaodong.
+--- Created by liuxiaodong (v0)
+--- Modified by lgazo (v1), nhp0712 (v2)
 --- DateTime: 2019/4/4 9:16
 ---
 
@@ -12,7 +13,8 @@ function _M.serialize(conf)
     local request = {
         method = ngx.req.get_method(),
         headers = ngx.req.get_headers(),
-        query = ngx.req.get_uri_args()
+        query = ngx.req.get_uri_args(),
+        path = ngx.var.uri
     }
     if read_body then
         request.body = ngx.req.get_body_data()
@@ -22,7 +24,7 @@ end
 
 function _M.do_mirror(premature, conf, request)
     for _, endpoint in pairs(conf.mirror_endpoints) do
-        http_client.execute(endpoint, request.method, request.headers, request.query, request.body)
+        http_client.execute(endpoint, request.path, request.method, request.headers, request.query, request.body)
     end
 end
 

@@ -1,7 +1,7 @@
 package = "kong-plugin-http-mirror"
 version = "1.0.0-0"
 source = {
-   url = "git://github.com/tarepanda1024/kong-plugin-http-mirror",
+   url = "git://github.com/nhp0712/kong-plugin-http-mirror",
 }
 description = {
   summary = "A Kong plugin that will mirror original request to other endpoints",

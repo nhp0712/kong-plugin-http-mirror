@@ -15,11 +15,9 @@ This is a plugin like nginx ```mirror``` directive. It can mirror origin request
 {
     "name": "http-mirror",
     "config": {
-        "mirror_request_body": "off",
+        "mirror_request_body": "false",
         "mirror_endpoints": [
-            {
-                "url": "http://127.0.0.1:9001"
-            }
+            "http://127.0.0.1:9001"
         ]
     }
 }
@@ -28,15 +26,16 @@ This is a plugin like nginx ```mirror``` directive. It can mirror origin request
 | parameter                  | type   | default | description |  
 | ----------                 | ----   |  ------ | ------------|
 | name                       | string |         | http-mirror |  
-| config.mirror_request_body | string | off     | Indicates whether the client request body is mirrored. |  
+| config.mirror_request_body | string | false   | Indicates whether the client request body is mirrored. |  
 | config.mirror_endpoints    | array  |         | endpoint |  
 
 
 
 ## Author
 
-
 tarepanda1024
+lgazo
+nhp0712
 
 ## Liscence
 

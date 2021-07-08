@@ -1,16 +1,17 @@
 --
--- User: liuxiaodong
+-- Creator: liuxiaodong
+-- Modified by lgazo (v1), nhp0712 (v2)
 -- DateTime: 2019/4/3 20:10
 -- Http Client
 
 local _M = { }
 local http = require("resty.http")
 
-function _M.execute(url, method, headers, query, body)
+function _M.execute(url, path, method, headers, query, body)
 
     local httpc = http.new()
 
-    local scheme, host, port, path = unpack(httpc:parse_uri(url))
+    local scheme, host, port = unpack(httpc:parse_uri(url))
 
     --connect_timeout, send_timeout, read_timeout
     httpc:set_timeouts(500, 1000, 1000)
@@ -25,6 +26,7 @@ function _M.execute(url, method, headers, query, body)
         body = body,
         headers = headers
     })
+    print("==========path: ", path)
 
     if not res then
         ngx.log(ngx.ERR, "request:", url, " call failed. err=", err)

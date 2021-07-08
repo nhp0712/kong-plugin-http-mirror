@@ -17,9 +17,7 @@ This is a plugin like nginx ```mirror``` directive. It can mirror origin request
     "config": {
         "mirror_request_body": "off",
         "mirror_endpoints": [
-            {
-                "url": "http://127.0.0.1:9001"
-            }
+            "http://127.0.0.1:9001"
         ]
     }
 }
@@ -37,6 +35,7 @@ This is a plugin like nginx ```mirror``` directive. It can mirror origin request
 
 
 tarepanda1024
+lgazo
 
 ## Liscence
 

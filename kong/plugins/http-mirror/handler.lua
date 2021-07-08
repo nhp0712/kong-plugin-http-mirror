@@ -2,7 +2,7 @@
 --- Created by liuxiaodong.
 --- DateTime: 2019/4/3 19:10
 ---
-local mirror = require "kong.plugins.http-mirror.mirror"
+local mirror = require "kong.plugins.kong-plugin-http-mirror.mirror"
 local BasePlugin = require "kong.plugins.base_plugin"
 
 local HttpMirrorHandler = BasePlugin:extend()
@@ -15,7 +15,7 @@ end
 
 function HttpMirrorHandler:access(conf)
     HttpMirrorHandler.super.log(self)
-    if conf.mirror_request_body == "on" then
+    if conf.mirror_request_body then
         ngx.req.read_body()
     end
 end

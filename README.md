@@ -101,3 +101,7 @@ $ docker-compose up
 $ curl -X POST http://127.0.0.1:8001/plugins/   --data "name=kong-plugin-http-mirror"   --data "config.mirror_request_body=false"   --data "config.mirror_endpoints=http://1.23.456.789:8088"
 ```
 => Then now any call to http://127.0.0.1:8000/<any-api> will also mirror a call of http://1.23.456.789:8088/<any-api>
+    
+
+(This plugin is tested working with kong:latest (2.4.1-alpine), and it currently doesn’t support load balancing for multiple mirror endpoints directly. Thus, a possible solution is to configure a single mirror endpoint that points to another API gateway server (nginx/kong/...), then configure upstream on that API gateway for load balancing purposes).
+

@@ -66,9 +66,11 @@ SOFTWARE.
 ## Plugin Installation and how to integrate with Docker-Kong (Community)
 
 1. Set up luarocks on your system:
+
 ```$ brew install luarocks```
 
 2. Clone this repository (prefer inside ./docker-kong/customize/):
+
 ```$ git clone https://github.com/nhp0712/kong-plugin-http-mirror.git && cd kong-plugin-http-mirror```
 
 3. Build and pack plugin:

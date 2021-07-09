@@ -63,7 +63,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## Plugin Installation and how to integrate with Docker-Kong
+## Plugin Installation and how to integrate with Docker-Kong (Community)
 
 1. Set up luarocks on your system:
 ```$ brew install luarocks```

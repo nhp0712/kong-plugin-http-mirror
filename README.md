@@ -61,3 +61,38 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+## Plugin Installation and how to integrate with Docker-Kong
+
+1. Set up luarocks on your system:
+brew install luarocks
+
+2. Clone this repository (prefer inside ./docker-kong/customize/):
+git clone https://github.com/nhp0712/kong-plugin-http-mirror.git && cd kong-plugin-http-mirror
+
+3. Build and pack plugin:
+luarocks make
+luarocks pack kong-plugin-http-mirror 1.0.0-0
+luarocks install kong-plugin-http-mirror-1.0.0-0.all.rock
+
+4. Create rocksdir folder:
+cd ..
+cp kong-plugin-http-mirror-1.0.0-0.all.rock rocksdir
+
+5. In ./docker-kong/customize, build docker image by executing:
+docker build \
+   --build-arg "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
+   --build-arg KONG_BASE="kong:latest" \
+   --build-arg PLUGINS="kong-plugin-http-mirror" \
+   --build-arg ROCKS_DIR="./rocksdir" \
+   --tag "kong-traffic" .
+
+6. Redirect to ./docker-kong/compose, execute:
+docker-compose up
+
+7. Enable and add configuration by using Konga/KongKonnect (preferably) or curl command:
+
+curl -X POST http://127.0.0.1:8001/plugins/   --data "name=kong-plugin-http-mirror"   --data "config.mirror_request_body=false"   --data "config.mirror_endpoints=http://1.23.456.789:8088"
+
+=> Then now any call to http://127.0.0.1:8000/<any-api> will also mirror a call of http://1.23.456.789:8088/<any-api>

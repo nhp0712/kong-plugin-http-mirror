@@ -14,7 +14,7 @@ function _M.execute(url, path, method, headers, query, body)
     local scheme, host, port = unpack(httpc:parse_uri(url))
 
     --connect_timeout, send_timeout, read_timeout
-    httpc:set_timeouts(5000, 10000, 10000)
+    httpc:set_timeouts(5, 100, 100)
 
     httpc:connect(host, port)
 
@@ -33,7 +33,7 @@ function _M.execute(url, path, method, headers, query, body)
     end
 
     -- max_idle_timeout(ms), pool_size(each worker)
-    httpc:set_keepalive()
+    httpc:set_keepalive(60000,20000)
 end
 
 return _M

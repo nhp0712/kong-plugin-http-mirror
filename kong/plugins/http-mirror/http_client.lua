@@ -14,7 +14,7 @@ function _M.execute(url, path, method, headers, query, body)
     local scheme, host, port = unpack(httpc:parse_uri(url))
 
     --connect_timeout, send_timeout, read_timeout
-    httpc:set_timeouts(500, 1000, 1000)
+    httpc:set_timeouts(5000, 10000, 10000)
 
     httpc:connect(host, port)
 
@@ -26,7 +26,6 @@ function _M.execute(url, path, method, headers, query, body)
         body = body,
         headers = headers
     })
-    print("==========path: ", path)
 
     if not res then
         ngx.log(ngx.ERR, "request:", url, " call failed. err=", err)
@@ -34,7 +33,7 @@ function _M.execute(url, path, method, headers, query, body)
     end
 
     -- max_idle_timeout(ms), pool_size(each worker)
-    httpc:set_keepalive(60000, 500)
+    httpc:set_keepalive()
 end
 
 return _M
